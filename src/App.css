@@ -1,0 +1,147 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.App-link {
+  color: #09d3ac;
+} */
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.welcome-area{
+  background-color: #F5ECC7;
+  height: 400px;
+}
+
+.welcome-contain{
+  display: flex;
+
+}
+
+.welcome-title{
+  color: #37055A;
+  margin-top: 100px;
+  font-weight: 600;
+}
+
+.welcome-img{
+  height: 420px;
+  width: 560px;
+}
+
+.nav-area{
+  background-color: #333333;
+}
+
+.logo{
+  height: 30px;
+  width: 92px;
+  margin-right: 30px; 
+}
+
+
+.signin-btn{
+  background-color: #333333!important;
+  border: #333333!important;
+  color: #999999 !important;
+  margin-right: 20px; 
+}
+
+.signup-btn{
+  background-color: #333333 !important;
+  border-color: #999999!important;
+  color: #999999 !important;
+  margin-right: 20px; 
+}
+
+.signin-btn:hover{
+  background-color: #333333!important;
+  border: #333333!important;
+  color: #EA4C89 !important;
+  margin-right: 20px; 
+}
+
+.signup-btn:hover{
+  background-color: #333333 !important;
+  border-color: #EA4C89!important;
+  color: #EA4C89 !important;
+  margin-right: 20px; 
+}
+
+.search-btn{
+  background-color: #333333 !important;
+  border-color: #999999!important;
+  color: #999999 !important;
+  margin-right: 20px; 
+}
+
+.search-btn:hover{
+  background-color: #333333 !important;
+  border-color: #EA4C89!important;
+  color: #EA4C89 !important;
+  margin-right: 20px; 
+}
+
+.signin-btn-v2{
+  background-color: #EA4C89 !important;
+  border-color: #EA4C89!important;
+  color: white !important;
+  margin-right: 20px; 
+}
+
+.signin-btn-v2:hover{
+  background-color: #F572A5 !important;
+  border-color: #F572A5!important;
+  color: white !important;
+  margin-right: 20px; 
+}
+
+.page-footer{
+  margin-top: 200px;
+}
+
+
+.left-signup-area{
+  background-color: #F1CDD7!important;
+  height: 700px;
+  width: 600px;
+}
+
+.signup-area{
+  margin-top: -40px;
+  display: flex;
+
+}
+
+.left-signin-area{
+  background-color: #F4D38B!important;
+  height: 700px;
+  width: 600px;
+}
+
+
+.signin-fb-btn{
+  background-color: #009AFF !important;
+  border-color: #009AFF!important;
+  color: white !important;
+  margin-right: 20px; 
+}
