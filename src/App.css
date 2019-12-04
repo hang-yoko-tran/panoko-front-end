@@ -63,28 +63,31 @@
   background-color: #333333!important;
   border: #333333!important;
   color: #999999 !important;
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
 }
 
 .signup-btn{
   background-color: #333333 !important;
   border-color: #999999!important;
   color: #999999 !important;
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
 }
 
 .signin-btn:hover{
   background-color: #333333!important;
   border: #333333!important;
   color: #EA4C89 !important;
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
+  text-decoration: none;
 }
 
 .signup-btn:hover{
   background-color: #333333 !important;
   border-color: #EA4C89!important;
   color: #EA4C89 !important;
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
+  text-decoration: none;
+
 }
 
 .search-btn{
@@ -105,14 +108,16 @@
   background-color: #EA4C89 !important;
   border-color: #EA4C89!important;
   color: white !important;
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
 }
 
 .signin-btn-v2:hover{
   background-color: #F572A5 !important;
   border-color: #F572A5!important;
   color: white !important;
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
+  text-decoration: none;
+
 }
 
 .page-footer{
@@ -144,4 +149,23 @@
   border-color: #009AFF!important;
   color: white !important;
   margin-right: 20px; 
+  text-decoration: none;
+  height: 48px;
+}
+/* 
+@media (min-width: 374px) {
+  .signin-fb-btn {
+    background-color: red !important;
+    border-color: #009AFF!important;
+    color: white !important;
+    margin-right: 20px; 
+    text-decoration: none;
+    height: 100px;
+    width: 320px;
+  }
+
+} */
+.toast{
+  position: absolute;
+  z-index: 1;
 }

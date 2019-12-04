@@ -38,12 +38,12 @@ export default function NavBar(props) {
           <Nav.Link href="#pricing">About Us</Nav.Link>
         </Nav>
         <Button className="signin-btn">
-          <Link to="/signin">Sign In</Link>
+          <Link className="signin-btn" to="/signin">Sign In</Link>
         </Button>
         <Button className="signup-btn" variant="outline-info">
-          <Link to="/signup">Sign Up</Link>
+          <Link className="signup-btn" to="/signup">Sign Up</Link>
         </Button>
-        <Button className="signup-btn" variant="outline-info" onClick={logout}>
+        <Button className="signin-btn" variant="outline-info" onClick={logout}>
           Logout
         </Button>
 
@@ -57,3 +57,4 @@ export default function NavBar(props) {
     </div>
   );
 }
+

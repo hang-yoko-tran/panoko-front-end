@@ -9,9 +9,12 @@ import SigninPage from "./pages/SigninPage";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import MyToast from "./components/MyToast"
 
 function App() {
   const [user, setUser] = useState(null);
+  const [message, setMessage] = useState("");
+  const [show, setShow] = useState(false);
 
   function getParam(name) {
     const url = window.location.href;
@@ -51,6 +54,7 @@ function App() {
   return (
     <div className="App">
       <NavBar setUser={setUser} />
+      <MyToast className="toast" message={message} show={show} setShow={setShow}/>
       <Switch>
         <Route path="/" exact>
           <WelcomePage />
@@ -59,7 +63,11 @@ function App() {
           <SignupPage />
         </Route>
         <Route path="/signin" exact>
-          <SigninPage setUser={setUser} />
+          <SigninPage
+            setUser={setUser}
+            setMessage={setMessage}
+            setShow={setShow}
+          />
         </Route>
         <Route path="/home" exact>
           <HomePage />

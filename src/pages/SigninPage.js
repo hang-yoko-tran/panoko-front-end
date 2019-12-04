@@ -26,11 +26,15 @@ export default function Signin(props) {
         localStorage.setItem("token", data.apiKey);
         props.setUser(data.user);
         history.push("/home");
+        props.setMessage(`Welcome ${data.user.email}!`)
+        props.setShow(true)
         
       } else if (data.code === 401) {
         props.setUser(null);
         localStorage.removeItem("token");
-        console.log("Invalid email or password");
+        props.setMessage("Invalid email or password")
+        props.setShow(true)
+        // console.log("Invalid email or password");
       }
     }
   };
@@ -127,9 +131,10 @@ export default function Signin(props) {
               Sign In
             </button>
             <hr style={{ marginTop: "20px" }}></hr>
+
             <a
-              type="button"
-              className="btn btn-lg btn-primary btn-block signin-fb-btn-v2"
+              // type="button"
+              className="btn btn-lg btn-primary btn-block signin-fb-btn"
               href="https://127.0.0.1:5000/login/facebook/authorized"
             >
               Sign In With Facebook
