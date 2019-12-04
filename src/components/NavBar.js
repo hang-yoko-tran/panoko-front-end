@@ -1,8 +1,30 @@
 import React from "react";
 import { Navbar, Image, Nav, Form, FormControl, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar(props) {
+  const history = useHistory();
+
+  const logout = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const url = "https://127.0.0.1:5000/user/logout";
+      const response = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.code === 200) {
+          props.setUser(null);
+          localStorage.removeItem("token");
+          history.push("/signin");
+        }
+      }
+    }
+  };
   return (
     <div>
       <Navbar className="nav-area" variant="dark">
@@ -21,6 +43,10 @@ export default function NavBar() {
         <Button className="signup-btn" variant="outline-info">
           <Link to="/signup">Sign Up</Link>
         </Button>
+        <Button className="signup-btn" variant="outline-info" onClick={logout}>
+          Logout
+        </Button>
+
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button className="search-btn" variant="outline-info">

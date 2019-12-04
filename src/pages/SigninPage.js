@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-export default function Signin() {
+export default function Signin(props) {
   const [email, setEmail] = useState("hang@gmail.com");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -14,17 +14,25 @@ export default function Signin() {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
-        // Authorization: `Token ${this.state.token}`
       },
       body: JSON.stringify({
         email: email,
         password: password
       })
     });
-    const data = await response.json();
-    if (data.code === 200) history.push("/home");
-    localStorage.setItem('token',data.token)
-    console.log(data);
+    if (response.ok) {
+      const data = await response.json();
+      if (data.code === 200) {
+        localStorage.setItem("token", data.apiKey);
+        props.setUser(data.user);
+        history.push("/home");
+        
+      } else if (data.code === 401) {
+        props.setUser(null);
+        localStorage.removeItem("token");
+        console.log("Invalid email or password");
+      }
+    }
   };
 
   return (
@@ -119,8 +127,12 @@ export default function Signin() {
               Sign In
             </button>
             <hr style={{ marginTop: "20px" }}></hr>
-            <a type="button" className="btn btn-lg btn-primary btn-block signin-fb-btn-v2" href="https://127.0.0.1:5000/login/facebook/authorized">
-                Sign In With Facebook
+            <a
+              type="button"
+              className="btn btn-lg btn-primary btn-block signin-fb-btn-v2"
+              href="https://127.0.0.1:5000/login/facebook/authorized"
+            >
+              Sign In With Facebook
             </a>
             <p className="mt-5 mb-3 text-muted">© 2017-2019</p>
           </form>

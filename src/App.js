@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route, useParams } from "react-router-dom";
@@ -11,6 +11,8 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   function getParam(name) {
     const url = window.location.href;
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -20,34 +22,35 @@ function App() {
     return results == null ? null : results[1];
   }
 
-
   const getUser = async () => {
-    const token = localStorage.getItem('token') || getParam("api_key")
-    const url = "https://127.0.0.1:5000/user/verify_api_key";
-    const response = await fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+    const token = localStorage.getItem("token") || getParam("api_key");
+    if (token) {
+      const url = "https://127.0.0.1:5000/user/get_user";
+      const response = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", token);
+        setUser(data.user);
+      } else {
+        console.log("not login, invalid key");
+        setUser = null;
+        localStorage.removeItem("token");
       }
-    });
-    if (response.ok){
-      const data = await response.json();
-      console.log(data);
-      localStorage.setItem('token', token)
-      // set User = data.user
-    } else {
-      alert("not login, invalid key")
-      // setUuser = null
     }
   };
 
   useEffect(() => {
-getUser();
+    getUser();
   }, []);
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar setUser={setUser} />
       <Switch>
         <Route path="/" exact>
           <WelcomePage />
@@ -56,7 +59,7 @@ getUser();
           <SignupPage />
         </Route>
         <Route path="/signin" exact>
-          <SigninPage />
+          <SigninPage setUser={setUser} />
         </Route>
         <Route path="/home" exact>
           <HomePage />

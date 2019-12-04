@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 export default function Signup() {
   const [email, setEmail] = useState("hang@gmail.com");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const singUp = async e => {
     e.preventDefault();
@@ -23,9 +25,17 @@ export default function Signup() {
         password
       })
     });
-    const data = await response.json();
-    console.log(data);
+    if (response.ok) {
+      const data = await response.json();
+      if (data.code === 200) {
+        history.push("/signin");
+        console.log("user created");
+      } else if (data.code === 409) {
+        console.log("Email alredy exist!");
+      }
+    }
   };
+
   return (
     <div>
       <div
