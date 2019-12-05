@@ -168,4 +168,7 @@
 .toast{
   position: absolute;
   z-index: 1;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
 }

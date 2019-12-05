@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup(props) {
   const [email, setEmail] = useState("hang@gmail.com");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,7 +31,9 @@ export default function Signup() {
         history.push("/signin");
         console.log("user created");
       } else if (data.code === 409) {
-        console.log("Email alredy exist!");
+        // console.log("Email alredy exist!");
+        props.setMessage("Email already exist")
+        props.setShow(true)
       }
     }
   };

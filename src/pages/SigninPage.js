@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export default function Signin(props) {
   const [email, setEmail] = useState("hang@gmail.com");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const { setFlash } = props;
 
   const signIn = async e => {
     e.preventDefault();
@@ -26,15 +27,11 @@ export default function Signin(props) {
         localStorage.setItem("token", data.apiKey);
         props.setUser(data.user);
         history.push("/home");
-        props.setMessage(`Welcome ${data.user.email}!`)
-        props.setShow(true)
-        
+        setFlash({ show: true, message: `Welcome ${data.user.email}!` });
       } else if (data.code === 401) {
         props.setUser(null);
         localStorage.removeItem("token");
-        props.setMessage("Invalid email or password")
-        props.setShow(true)
-        // console.log("Invalid email or password");
+        setFlash({ show: true, message: "Invalid email or password" });
       }
     }
   };
@@ -118,9 +115,12 @@ export default function Signin(props) {
                 <input type="checkbox" value="remember-me" />
                 Remember me
               </label>
-              <a href="#" style={{ color: "#EA4C89", marginLeft: "170px" }}>
+              <Link
+                to="/forgot-password"
+                style={{ color: "#EA4C89", marginLeft: "170px" }}
+              >
                 ForgotPassword
-              </a>
+              </Link>
             </div>
 
             <button

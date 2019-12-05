@@ -37,15 +37,28 @@ export default function NavBar(props) {
           <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">About Us</Nav.Link>
         </Nav>
-        <Button className="signin-btn">
-          <Link className="signin-btn" to="/signin">Sign In</Link>
-        </Button>
-        <Button className="signup-btn" variant="outline-info">
-          <Link className="signup-btn" to="/signup">Sign Up</Link>
-        </Button>
-        <Button className="signin-btn" variant="outline-info" onClick={logout}>
-          Logout
-        </Button>
+        {!props.user ? (
+          <span>
+            <Button className="signin-btn">
+              <Link className="signin-btn" to="/signin">
+                Sign In
+              </Link>
+            </Button>
+            <Button className="signup-btn mr-2" variant="outline-info">
+              <Link className="signup-btn" to="/signup">
+                Sign Up
+              </Link>
+            </Button>
+          </span>
+        ) : (
+          <Button
+            className="signin-btn"
+            variant="outline-info"
+            onClick={logout}
+          >
+            Logout
+          </Button>
+        )}
 
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -57,4 +70,3 @@ export default function NavBar(props) {
     </div>
   );
 }
-
