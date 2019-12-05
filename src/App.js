@@ -3,6 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ReactNotifications from "react-notifications-component";
 
 import WelcomePage from "./pages/WelcomePage";
 import SignupPage from "./pages/SignupPage";
@@ -12,12 +13,10 @@ import NewPassword from "./pages/NewPassword";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import Flash from "./components/Flash";
 import { Spinner } from "react-bootstrap";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [flash, setFlash] = useState({ show: false, message: "Change me!" });
   const [loading, setLoading] = useState(true);
 
   function getParam(name) {
@@ -63,36 +62,36 @@ function App() {
         <Spinner animation="border" variant="primary" />
       ) : (
         <div>
-          <Flash className="toast" flash={flash} setFlash={setFlash} />
+          <ReactNotifications />
           <Switch>
             <Route path="/" exact>
               <WelcomePage />
             </Route>
             <Route path="/signup" exact>
               {!user ? (
-                <SignupPage setUser={setUser} setFlash={setFlash} />
+                <SignupPage setUser={setUser} />
               ) : (
                 <HomePage user={user} />
               )}
             </Route>
             <Route path="/signin" exact>
               {!user ? (
-                <SigninPage setUser={setUser} setFlash={setFlash} />
+                <SigninPage setUser={setUser} />
               ) : (
                 <HomePage />
               )}
             </Route>
             <Route path="/forgot-password" exact>
               {!user ? (
-                <ForgotPassword setFlash={setFlash} />
+                <ForgotPassword />
               ) : (
                 <HomePage user={user} />
               )}
             </Route>
             <Route path="/new-password/:token" exact>
-              <ForgotPassword setFlash={setFlash} />
+              <ForgotPassword />
               {!user ? (
-                <NewPassword setFlash={setFlash} />
+                <NewPassword />
               ) : (
                 <HomePage user={user} />
               )}

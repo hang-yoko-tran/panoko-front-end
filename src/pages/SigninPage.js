@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
+import notify from "../utils/Notification";
 
 export default function Signin(props) {
   const [email, setEmail] = useState("hang@gmail.com");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const { setFlash } = props;
 
   const signIn = async e => {
     e.preventDefault();
@@ -27,11 +27,11 @@ export default function Signin(props) {
         localStorage.setItem("token", data.apiKey);
         props.setUser(data.user);
         history.push("/home");
-        setFlash({ show: true, message: `Welcome ${data.user.email}!` });
+        notify("Info", `Welcome ${data.user.email}!`, "success");
       } else if (data.code === 401) {
         props.setUser(null);
         localStorage.removeItem("token");
-        setFlash({ show: true, message: "Invalid email or password" });
+        notify("Error", "Invalid email or password", "danger");
       }
     }
   };

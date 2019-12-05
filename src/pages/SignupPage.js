@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import notify from "../utils/Notification";
 
 export default function Signup(props) {
   const [email, setEmail] = useState("hang@gmail.com");
@@ -16,7 +17,6 @@ export default function Signup(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
-        // Authorization: `Token ${this.state.token}`
       },
       body: JSON.stringify({
         email: email,
@@ -29,11 +29,10 @@ export default function Signup(props) {
       const data = await response.json();
       if (data.code === 200) {
         history.push("/signin");
+        notify("Info", "User Created", "success")
         console.log("user created");
       } else if (data.code === 409) {
-        // console.log("Email alredy exist!");
-        props.setMessage("Email already exist")
-        props.setShow(true)
+        notify("Error", "Email already exist!", "danger");
       }
     }
   };

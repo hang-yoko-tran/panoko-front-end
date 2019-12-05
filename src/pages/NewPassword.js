@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
+import notify from "../utils/Notification";
 
 export default function NewPassword(props) {
   const [password, setPassword] = useState("");
@@ -27,9 +28,11 @@ export default function NewPassword(props) {
       const data = await response.json();
       if (data.code === 200) {
         history.push("/signin");
-        setFlash({ show: true, message: `Create new password succsessfully` });
+        // setFlash({ show: true, message: `Create new password succsessfully` });
+        notify("Info", "Create new password successfully", "success")
       } else if (data.code === 400) {
-        setFlash({ show: true, message: "Password not match" });
+        // setFlash({ show: true, message: "Password not match" });
+        notify("Warning", "Password not match!", "warning")
       } else if (data.code === 404) {
         setFlash({ show: true, message: "Invalid Token" });
       }
