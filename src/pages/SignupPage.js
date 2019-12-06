@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import notify from "../utils/Notification";
 
 export default function Signup(props) {
@@ -39,18 +39,6 @@ export default function Signup(props) {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginRight: "30px"
-        }}
-      >
-        <p>Member already?</p>
-        <a href="#" style={{ color: "#EA4C89" }}>
-          Sign In Now
-        </a>
-      </div>
       <div className="signup-area">
         <section className="left-signup-area">
           <h3
@@ -73,14 +61,34 @@ export default function Signup(props) {
           />
         </section>
 
-        <section className="container col-8">
+        <section className="container right-signup-area">
           {/* <form className="form-signin col-6 container" method="POST"> */}
-          <form className="form-signin col-6 container">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginRight: "30px",
+              marginTop: "50px"
+            }}
+          >
+            <p>Already member?</p>
+
+            <a href="#" className="signup-link">
+              <Link
+                to="/signin"
+                style={{ color: "#EA4C89", marginLeft: "10px" }}
+              >
+                Sign In
+              </Link>
+            </a>
+          </div>
+          <div>
+          <form className="form-signin ">
             <h3
               style={{
                 fontWeight: "600",
                 color: "#333333",
-                marginTop: "100px",
+                marginTop: "30px",
                 marginBottom: "20px"
               }}
             >
@@ -154,7 +162,9 @@ export default function Signup(props) {
             {/* <p className="mt-5 mb-3 text-muted">© 2017-2019</p> */}
             {/* </form> */}
           </form>
+          </div>
         </section>
+        
       </div>
     </div>
   );

@@ -29,7 +29,7 @@
 
 .welcome-area{
   background-color: #F5ECC7;
-  height: 400px;
+  min-height: 400px;
 }
 
 .welcome-contain{
@@ -139,7 +139,7 @@
 
 .left-signin-area{
   background-color: #F4D38B!important;
-  height: 700px;
+  min-height: 700px;
   width: 600px;
 }
 
@@ -152,23 +152,219 @@
   text-decoration: none;
   height: 48px;
 }
-/* 
-@media (min-width: 374px) {
-  .signin-fb-btn {
-    background-color: red !important;
-    border-color: #009AFF!important;
-    color: white !important;
-    margin-right: 20px; 
-    text-decoration: none;
-    height: 100px;
-    width: 320px;
-  }
 
-} */
 .toast{
   position: absolute;
   z-index: 1;
   position: absolute;
   left: 50%;
   margin-left: -50px;
+}
+
+.signin-signup-logout-search-area-nav{
+  display: flex;
+  margin-left: auto;
+ 
+}
+
+.logo-tabs-area{
+  display: flex ;
+  flex-direction: row;
+}
+
+.search-area{
+  display: flex;
+  flex-direction: row;
+}
+
+.right-signup-area{
+  margin-top: 20px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 460px;
+  padding: 15px;
+  margin: auto;
+}
+
+
+@media only screen and (max-width: 768px){
+  .nav-area{
+    display: flex!important ;
+    flex-direction: column!important ;
+    align-items: flex-start!important ;
+  }
+
+  .signin-signup-logout-search-area-nav{
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 10px; */
+    /* justify-content: flex-start!important ;
+     */
+    margin-left: 5px;
+
+   
+  }
+
+  .logo-tabs-area{
+    display: flex!important ;
+    flex-direction: row!important ;
+
+  }
+
+  .tabs-area{
+    margin-left: -20px;
+    font-size: 12px;
+  }
+  /* .search-input{
+    width: 290px;
+  } */
+  .search-area{
+    display: flex!important ;
+    flex-direction: row!important ;
+    justify-content: space-around!important ;
+
+  }
+  .search-btn{
+    float: right;
+  }
+  .search-input-search-btn-area{
+    margin-top: 20px;
+  }
+  .signin-signup-logout-area{
+    margin-top: 20px;
+
+  }
+
+
+  .welcome-contain{
+    display: flex;
+    flex-direction: column;
+    margin-top: -60px;
+  }
+
+  /* .signup-area{
+    display: flex;
+    flex-direction: column;
+  } */
+  
+  /* .left-signin-area{
+    display: none;
+  } */
+
+  /* .left-signup-area{
+    display: none;
+
+  } */
+
+  .right-signup-area{
+    /* display: flex; */
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: -300px;
+  }
+/* 
+  .input-sign{
+    width: 720px;
+  } */
+  /* .container{
+    max-width: 720px;
+  } */
+  /* .form-signin {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: auto;
+  } */
+}
+
+@media only screen and (max-width: 414px){
+  .nav-area{
+    display: flex!important ;
+    flex-direction: column!important ;
+    align-items: flex-start!important ;
+  }
+
+  .signin-signup-logout-search-area-nav{
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 10px; */
+    /* justify-content: flex-start!important ;
+     */
+    margin-left: 5px;
+
+   
+  }
+
+  .logo-tabs-area{
+    display: flex!important ;
+    flex-direction: row!important ;
+
+  }
+
+  .tabs-area{
+    margin-left: -20px;
+    font-size: 12px;
+  }
+  /* .search-input{
+    width: 290px;
+  } */
+  .search-area{
+    display: flex!important ;
+    flex-direction: row!important ;
+    justify-content: space-around!important ;
+
+  }
+  .search-btn{
+    float: right;
+  }
+  .search-input-search-btn-area{
+    margin-top: 20px;
+  }
+  .signin-signup-logout-area{
+    margin-top: 20px;
+
+  }
+
+
+  .welcome-contain{
+    display: flex;
+    flex-direction: column;
+    margin-top: -60px;
+  }
+
+  .signup-area{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .left-signin-area{
+    display: none;
+  }
+
+  .left-signup-area{
+    display: none;
+
+  }
+
+  .right-signup-area{
+    /* display: flex; */
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: -300px;
+  }
+/* 
+  .input-sign{
+    width: 720px;
+  } */
+  /* .container{
+    max-width: 720px;
+  } */
+  .form-signin {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: auto;
+  }
 }
