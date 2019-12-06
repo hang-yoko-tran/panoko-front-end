@@ -44,7 +44,7 @@ function App() {
         setUser(data.user);
       } else {
         console.log("not login, invalid key");
-        setUser = null;
+        setUser(null)
         localStorage.removeItem("token");
       }
     }

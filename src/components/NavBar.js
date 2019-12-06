@@ -33,7 +33,7 @@ export default function NavBar(props) {
           src="https://s1.upanh.pro/2019/12/02/Panoko_logo.png"
         />
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Shots</Nav.Link>
+          <Nav.Link href="#home">Artworks</Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">About Us</Nav.Link>
         </Nav>

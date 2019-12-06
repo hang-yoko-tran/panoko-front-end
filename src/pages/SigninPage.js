@@ -135,7 +135,7 @@ export default function Signin(props) {
             <a
               // type="button"
               className="btn btn-lg btn-primary btn-block signin-fb-btn"
-              href="https://127.0.0.1:5000/login/facebook/authorized"
+              href="https://127.0.0.1:5000/login/facebook"
             >
               Sign In With Facebook
             </a>

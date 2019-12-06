@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import notify from "../utils/Notification";
 
 export default function ForgotPassword(props) {
   const [email, setEmail] = useState("hang@gmail.com");
-  const [password, setPassword] = useState("");
-  const history = useHistory();
-  const { setFlash } = props;
 
   const forgotPassword = async e => {
     e.preventDefault();
@@ -24,12 +20,9 @@ export default function ForgotPassword(props) {
     if (response.ok) {
       const data = await response.json();
       if (data.code === 200) {
-        // history.push("/home");
-        // setFlash({ show: true, message: `Please check you email` });
         notify("Info", "Please check you email", "info")
         
       } else if (data.code === 404){
-        // setFlash({ show: true, message: `Email not exist` });
         notify("Warning", "Email not exist", "warning")
 
       }
