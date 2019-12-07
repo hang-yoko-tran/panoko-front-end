@@ -119,6 +119,19 @@
   text-decoration: none;
 
 }
+.upload-btn{
+
+  background-color: #EA4C89 !important;
+  border-color: #EA4C89!important;
+  color: white !important;
+}
+
+.upload-btn:hover{
+
+  background-color: #F572A5 !important;
+  border-color: #F572A5!important;
+  color: white !important;
+}
 
 .page-footer{
   margin-top: 200px;
@@ -186,6 +199,14 @@
   max-width: 460px;
   padding: 15px;
   margin: auto;
+}
+
+/* .upload-btn{
+
+} */
+
+.artwork-home-area{
+  margin-top:30px;
 }
 
 

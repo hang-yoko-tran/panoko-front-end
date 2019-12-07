@@ -37,7 +37,7 @@ export default function NavBar(props) {
           </div>
           <div className="tabs-area">
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Artworks</Nav.Link>
+              <Nav.Link href="/home">Artworks</Nav.Link>
               <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#pricing">About Us</Nav.Link>
             </Nav>
@@ -59,6 +59,10 @@ export default function NavBar(props) {
                 </Button>
               </span>
             ) : (
+              <>
+              <Button variant="primary" className="upload-btn">
+                <Link className="signin-btn-v2" to="/upload-post">Upload your artwork</Link>
+              </Button>    
               <Button
                 className="signin-btn"
                 variant="outline-info"
@@ -66,6 +70,7 @@ export default function NavBar(props) {
               >
                 Logout
               </Button>
+              </>
             )}
           </div>
           <div className="search-input-search-btn-area">

@@ -9,6 +9,7 @@ import WelcomePage from "./pages/WelcomePage";
 import SignupPage from "./pages/SignupPage";
 import SigninPage from "./pages/SigninPage";
 import ForgotPassword from "./pages/ForgotPassword";
+import UploadPost from "./pages/UploadPost";
 import NewPassword from "./pages/NewPassword";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
@@ -100,6 +101,9 @@ function App() {
               <HomePage user={user} />
             </ProtectedRoute>
           </Switch>
+          <Route path="/upload-post" exact>
+            <UploadPost user={user} />
+          </Route>
         </div>
       )}
       <Footer />
