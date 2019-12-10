@@ -64,7 +64,7 @@ export default function Upload() {
               name="img_url"
               id="inputEmail"
               className="form-control"
-              placeholder="Email address"
+              placeholder="Put Your Image URL"
               required=""
 
 
@@ -76,20 +76,21 @@ export default function Upload() {
               name="title"
               id="inputEmail"
               className="form-control"
-              placeholder="Frist Name"
+              placeholder="Put Your Title"
               required=""
 
 
             />
             <p style={{ fontWeight: "600" }}>Description</p>
-            <input
+            <textarea
               style={{ marginBottom: "20px" }}
               type="text"
               name="description"
               id="descc"
               className="form-control"
-              placeholder="Last Name"
+              placeholder="Put Your Description"
               required=""
+              rows="6"
 
 
             />

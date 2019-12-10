@@ -9,8 +9,11 @@ export default function Post(props) {
     
       <div className="col-md-4 artwork-home-area">
           <h4>Username</h4>
-          <span>Create time</span>
+          <span>Created time</span>
           <h4>Comment</h4>
+          <button>Edit</button>
+          <button>Delete</button>
+          <hr></hr>
       </div>
 
 

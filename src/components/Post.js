@@ -31,7 +31,7 @@ export default function Post(props) {
 
   return (
     
-      <div className="col-md-4 artwork-home-area">
+      <div className="col-md-6 artwork-home-area col-xl-4	">
         <div className="card mb-4 shadow-sm">
           {/* <svg
             className="bd-placeholder-img card-img-top"
@@ -70,7 +70,7 @@ export default function Post(props) {
                 <button type="button"
                 onClick={handleOnLike}
                 className="btn btn-sm btn-outline-secondary"  >
-                <i class="fas fa-heart"></i> {liked ? "Like" : "Unlike"}
+                <i className="fas fa-heart"></i> {liked ? "Like" : "Unlike"}
                 </button>
               </div>
               <small className="text-muted">{props.data.created_at}</small>

@@ -134,7 +134,7 @@
 }
 
 .page-footer{
-  margin-top: 200px;
+  margin-top: 50px;
 }
 
 
@@ -206,7 +206,7 @@
 } */
 
 .artwork-home-area{
-  margin-top:35px;
+  margin-top:50px;
 }
 
 .author-date-single-post{
@@ -320,6 +320,12 @@
     padding: 10px;
     margin: auto;
   } */
+  .card-img-top{
+    width: 400px;
+    height: 280px;
+  }
+
+
 }
 
 @media only screen and (max-width: 414px){
@@ -410,4 +416,10 @@
     padding: 10px;
     margin: auto;
   }
+
+  .card-img-top{
+    width: 300px;
+    height: 230px;
+  }
+  
 }
