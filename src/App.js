@@ -13,6 +13,8 @@ import UploadPost from "./pages/UploadPost";
 import NewPassword from "./pages/NewPassword";
 import SinglePost from "./pages/SinglePost";
 import HomePage from "./pages/HomePage";
+import Features from "./pages/Features";
+import AboutUs from "./pages/AboutUs";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { Spinner } from "react-bootstrap";
@@ -69,6 +71,12 @@ function App() {
             <Route path="/" exact>
               <WelcomePage />
             </Route>
+            <Route path="/features" exact>
+              <Features />
+            </Route>
+            <Route path="/about-us" exact>
+              <AboutUs />
+            </Route>
             <Route path="/signup" exact>
               {!user ? (
                 <SignupPage setUser={setUser} />
@@ -101,6 +109,7 @@ function App() {
             <ProtectedRoute path="/home" exact>
               <HomePage user={user} />
             </ProtectedRoute>
+
           <Route path="/upload-post" exact>
             <UploadPost user={user} />
           </Route>

@@ -31,7 +31,10 @@
   background-color: #F5ECC7;
   min-height: 400px;
 }
-
+.welcome-area-about-us{
+  background-color: white;
+  min-height: 400px;
+}
 .welcome-contain{
   display: flex;
 
@@ -46,6 +49,7 @@
 .welcome-img{
   height: 420px;
   width: 560px;
+  margin-top:30px;
 }
 
 .nav-area{
@@ -231,6 +235,15 @@
 .post-btn{
   margin-top: 20px;
 }
+
+.second-part-about-us{
+  margin-top: 50px;
+  display: flex;
+
+}
+
+/* background-color: #F4D38B;
+.second-part-about-us-bcg{} */
 
 @media only screen and (max-width: 768px){
   .nav-area{

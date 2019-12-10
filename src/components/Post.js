@@ -31,7 +31,7 @@ export default function Post(props) {
 
   return (
     
-      <div className="col-md-6 artwork-home-area col-xl-4	">
+      <div className="col-md-2 artwork-home-area col-xl-4	">
         <div className="card mb-4 shadow-sm">
           {/* <svg
             className="bd-placeholder-img card-img-top"

@@ -38,8 +38,8 @@ export default function NavBar(props) {
           <div className="tabs-area">
             <Nav className="mr-auto">
               <Nav.Link href="/home">Artworks</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">About Us</Nav.Link>
+              <Nav.Link href="/features">Features</Nav.Link>
+              <Nav.Link href="/about-us">About Us</Nav.Link>
             </Nav>
           </div>
         </div>

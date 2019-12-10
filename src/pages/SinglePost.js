@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import {axios} from "axios";
-// import Comment from "../components/Comment"
+import Comment from "../components/Comment"
 
 export default function Post() {
   const [PostData, setPostData] = useState(null);
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const [commentInput, setCommentInput] = useState({})
   const { id } = useParams();
 
   const handleOnLike = async event => {
@@ -32,7 +32,29 @@ export default function Post() {
     }
   };
 
- 
+ const handleOnCommentChange = (event) => {
+   event.preventDefault()
+   setCommentInput({...commentInput, [event.target.name]: event.target.value})
+ }
+
+ const handleOnCommentSubmit = async (event) => {
+    event.preventDefault()
+    const response = await fetch(`https://localhost:5000/post/${PostData.id}/comment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: `Token ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(commentInput)
+    })
+    const data = await response.json()
+    if(data.status === "created"){
+      handleOnLoading()
+    }
+    handleOnLoading()
+
+ }
 
   const handleOnLoading = async () => {
     const response = await fetch(`https://localhost:5000/post/${id}`, {
@@ -133,8 +155,13 @@ export default function Post() {
           </div>
 
           <hr></hr>
+          
 
-          <div>
+
+          <form
+          onChange={handleOnCommentChange}
+          onSubmit={handleOnCommentSubmit}
+          >
             <h6 style={{ marginTop: "35px", marginBottom: "20px" }}>
               <strong>Add a new comment</strong>
             </h6>
@@ -146,12 +173,16 @@ export default function Post() {
               rows="3"
             ></textarea>
             <Button
+              type="submit"
               variant="primary"
               className="upload-btn signin-btn-v2 post-btn"
             >
               Post Comment
             </Button>
-          </div>
+          </form>
+          {PostData.comments.map((commentData) => {
+            return <Comment data={commentData} />
+          })}
           {/* <div className="d-flex flex-wrap">
           {comment ? (
             comment.map(post => {
