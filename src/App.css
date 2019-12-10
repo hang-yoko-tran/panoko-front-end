@@ -206,9 +206,31 @@
 } */
 
 .artwork-home-area{
-  margin-top:30px;
+  margin-top:35px;
 }
 
+.author-date-single-post{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.title-btn-single-post{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-single-post{
+  font-weight: 1000;
+}
+
+.edit-btn-single-post{
+  margin-right: 10px;
+}
+
+.post-btn{
+  margin-top: 20px;
+}
 
 @media only screen and (max-width: 768px){
   .nav-area{

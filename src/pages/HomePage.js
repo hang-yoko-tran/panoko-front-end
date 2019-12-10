@@ -8,7 +8,12 @@ export default function Home() {
   const [ posts, setPosts ] = useState([])
 
   const handleGetData = async () => {
-      const respone = await fetch("https://localhost:5000/post/")
+      const respone = await fetch("https://localhost:5000/post/", {
+        method:"GET",
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      })
       const data = await respone.json()
       if(data){
         setPosts([...posts, ...data])

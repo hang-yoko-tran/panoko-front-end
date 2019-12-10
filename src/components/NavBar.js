@@ -63,6 +63,7 @@ export default function NavBar(props) {
               <Button variant="primary" className="upload-btn">
                 <Link className="signin-btn-v2" to="/upload-post">Upload your artwork</Link>
               </Button>    
+              {/* <p>{ current_user.firstname }</p> */}
               <Button
                 className="signin-btn"
                 variant="outline-info"

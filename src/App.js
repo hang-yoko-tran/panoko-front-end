@@ -11,6 +11,7 @@ import SigninPage from "./pages/SigninPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import UploadPost from "./pages/UploadPost";
 import NewPassword from "./pages/NewPassword";
+import SinglePost from "./pages/SinglePost";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -100,10 +101,15 @@ function App() {
             <ProtectedRoute path="/home" exact>
               <HomePage user={user} />
             </ProtectedRoute>
-          </Switch>
           <Route path="/upload-post" exact>
             <UploadPost user={user} />
           </Route>
+          <Route path="/post/:id" exact>
+            <SinglePost user={user} />
+          </Route>
+
+          </Switch>
+
         </div>
       )}
       <Footer />

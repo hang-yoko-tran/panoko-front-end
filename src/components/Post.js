@@ -1,7 +1,33 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { Nav } from "react-bootstrap";
+import { useHistory } from "react-router-dom"
 
 export default function Post(props) {
+
+  const [ liked, setLiked ] = useState(props.data.isLiked)
+  const history = useHistory()
+
+  const handleOnClick = (event, id) => {
+    event.preventDefault()
+    history.push(`/post/${id}`)
+  }
+
+  const handleOnLike = async (event) => {
+    event.preventDefault()
+    const response = await fetch(`https://localhost:5000/post/${props.data.id}/like`, {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`    
+      }
+    })
+    const data = await response.json()
+    if(data.status === "OK"){
+      setLiked(true)
+    }else{
+      setLiked(false)
+    }
+  }
+
 
   return (
     
@@ -36,11 +62,15 @@ export default function Post(props) {
             </p>
             <div className="d-flex justify-content-between align-items-center">
               <div className="btn-group">
-                <button type="button" className="btn btn-sm btn-outline-secondary">
+                <button 
+                onClick={(event) => handleOnClick(event, props.data.id)}
+                type="button" className="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button type="button" className="btn btn-sm btn-outline-secondary">
-                  Edit
+                <button type="button"
+                onClick={handleOnLike}
+                className="btn btn-sm btn-outline-secondary"  >
+                <i class="fas fa-heart"></i> {liked ? "Like" : "Unlike"}
                 </button>
               </div>
               <small className="text-muted">{props.data.created_at}</small>
