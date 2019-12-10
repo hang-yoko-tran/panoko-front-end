@@ -89,11 +89,11 @@ export default function Post() {
   }
 
   return (
-    <div className="container col-6">
+    <div className="container col-md-12">
       {loading ? (
         <Spinner animation="border" variant="primary" />
       ) : (
-        <div className="artwork-home-area">
+        <div className="artwork-home-area ">
           {/* <div className="card mb-4 shadow-sm"> */}
           {/* <svg
             className="bd-placeholder-img card-img-top"
@@ -115,14 +115,20 @@ export default function Post() {
             <div>
               <button
                 type="button"
-                className="btn btn-sm btn-outline-secondary edit-btn-single-post"
+                className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
               >
                 Edit
               </button>
               <button
                 type="button"
+                className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
                 onClick={handleOnLike}
-                className="btn btn-sm btn-outline-secondary"
+                className="btn btn-sm btn-outline-secondary edit-btn"
               >
                 <i className="fas fa-heart"></i> {liked ? "Like" : "Unlike"}
               </button>
@@ -138,6 +144,7 @@ export default function Post() {
             width="700"
             height="500"
             src={`${PostData.image_url}`}
+            className="img-single-post container"
           ></img>
 
           {/* </svg> */}

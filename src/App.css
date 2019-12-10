@@ -234,6 +234,8 @@
 
 .post-btn{
   margin-top: 20px;
+  margin-bottom: 50px;
+
 }
 
 .second-part-about-us{
@@ -244,6 +246,33 @@
 
 /* background-color: #F4D38B;
 .second-part-about-us-bcg{} */
+
+.space-line-comment{
+  margin-top: 20px;
+}
+
+.edit-btn-comment{
+  border: none;
+  color: #BCBCBC;
+
+}
+
+.edit-btn-comment:hover{
+  border: none;
+  color: #EA4C89;
+}
+
+.edit-btn:hover{
+  background-color: #EA4C89 !important;
+  border: none;
+
+}
+
+.header-comment-area{
+  display: flex;
+  justify-content: space-between;
+
+}
 
 @media only screen and (max-width: 768px){
   .nav-area{
@@ -338,6 +367,10 @@
     height: 280px;
   }
 
+  .img-single-post{
+    width: 700px;
+    height: 500px;
+  }
 
 }
 
@@ -435,4 +468,9 @@
     height: 230px;
   }
   
+  .img-single-post{
+    width: 300px;
+    height: 230px;
+  }
+
 }

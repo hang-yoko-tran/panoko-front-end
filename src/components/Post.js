@@ -31,7 +31,7 @@ export default function Post(props) {
 
   return (
     
-      <div className="col-md-2 artwork-home-area col-xl-4	">
+      <div className="col-md-6 artwork-home-area col-xl-4	">
         <div className="card mb-4 shadow-sm">
           {/* <svg
             className="bd-placeholder-img card-img-top"
@@ -64,12 +64,12 @@ export default function Post(props) {
               <div className="btn-group">
                 <button 
                 onClick={(event) => handleOnClick(event, props.data.id)}
-                type="button" className="btn btn-sm btn-outline-secondary">
+                type="button" className="btn btn-sm btn-outline-secondary edit-btn">
                   View
                 </button>
                 <button type="button"
                 onClick={handleOnLike}
-                className="btn btn-sm btn-outline-secondary"  >
+                className="btn btn-sm btn-outline-secondary edit-btn"  >
                 <i className="fas fa-heart"></i> {liked ? "Like" : "Unlike"}
                 </button>
               </div>
