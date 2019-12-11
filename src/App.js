@@ -117,7 +117,9 @@ function App() {
             <UploadPost user={user} />
           </Route>
           <Route path="/post/:id" exact>
-            <SinglePost user={user} />
+            <SinglePost 
+              user={user} 
+            />
           </Route>
 
           </Switch>

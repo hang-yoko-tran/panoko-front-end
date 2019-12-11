@@ -8,7 +8,7 @@ export default function NavBar(props) {
   const logout = async () => {
     const token = localStorage.getItem("token");
     if (token) {
-      const url = "https://127.0.0.1:5000/user/logout";
+      const url = `${process.env.REACT_APP_API_URL}/user/logout`;
       const response = await fetch(url, {
         headers: {
           "Content-Type": "application/json",

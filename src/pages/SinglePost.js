@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import axios   from "axios";
-import Comment from "../components/Comment";
 import { Modal } from "react-bootstrap"
+import Comment from "../components/Comment"
 
-export default function Post() {
+export default function Post(props) {
   const [PostData, setPostData] = useState(null);
+  // const [CommentData, setCommentData] = useState(null);
+
   const [ openModal, setOpenModal ] = useState(false)
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [commentInput, setCommentInput] = useState({});
   const { id } = useParams();
+  let history = useHistory()
 
   const handleOnClose = (event) => {
     event.preventDefault()
@@ -37,6 +40,8 @@ export default function Post() {
       })
       setOpenModal(false)
 }
+
+
 
 
   const handleOnLike = async event => {
@@ -108,6 +113,25 @@ export default function Post() {
     setLoading(false);
   };
 
+  const deletePost = async (id) => {
+    const res = await fetch(`https://localhost:5000/post/${id}/delete`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${props.token}`
+        },
+        body: JSON.stringify({"id": id })
+    })
+    const data = await res.json()
+    if (data.success) {
+        console.log('delete success post id:', id)
+        history.push('/home')
+        setPostData(props.post)
+    } else {
+        console.log(data.status)
+    }
+  }
+
   useEffect(() => {
     handleOnLoading();
   }, []);
@@ -158,6 +182,7 @@ export default function Post() {
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
+                onClick={()=>deletePost(id)}
               >
                 Delete
               </button>
@@ -257,6 +282,9 @@ export default function Post() {
           </form>
         </Modal.Body>
       </Modal>
+
+
+
     </div>
   );
 }
