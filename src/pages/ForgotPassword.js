@@ -7,7 +7,8 @@ export default function ForgotPassword(props) {
 
   const forgotPassword = async e => {
     e.preventDefault();
-    const url = "https://127.0.0.1:5000/user/forgot-password";
+    // const url = "https://127.0.0.1:5000/user/forgot-password";
+    const url = `${process.env.REACT_APP_API_URL}/user/forgot-password`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

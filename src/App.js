@@ -37,7 +37,8 @@ function App() {
   const getUser = async () => {
     const token = localStorage.getItem("token") || getParam("api_key");
     if (token) {
-      const url = "https://127.0.0.1:5000/user/get_user";
+      // const url = "https://127.0.0.1:5000/user/get_user";
+      const url = `${process.env.REACT_APP_API_URL}/user/get_user`;
       const response = await fetch(url, {
         headers: {
           "Content-Type": "application/json",

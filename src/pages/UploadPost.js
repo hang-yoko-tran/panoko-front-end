@@ -17,7 +17,7 @@ export default function Upload() {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch("https://localhost:5000/post/", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/post/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

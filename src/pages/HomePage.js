@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Post from "../components/Post"
 
 export default function Home() {
@@ -8,7 +6,8 @@ export default function Home() {
   const [ posts, setPosts ] = useState([])
 
   const handleGetData = async () => {
-      const respone = await fetch("https://localhost:5000/post/", {
+      const url = `${process.env.REACT_APP_API_URL}/post/`;
+      const respone = await fetch(url, {
         method:"GET",
         headers: {
           Authorization: `Token ${localStorage.getItem('token')}`

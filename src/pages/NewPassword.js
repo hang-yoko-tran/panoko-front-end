@@ -13,7 +13,8 @@ export default function NewPassword(props) {
   const newPassword = async e => {
     e.preventDefault();
 
-    const url = `https://127.0.0.1:5000/user/new-password/${token}`;
+    // const url = `https://127.0.0.1:5000/user/new-password/${token}`;
+    const url = `${process.env.REACT_APP_API_URL}/user/new-password/${token}`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

@@ -14,7 +14,7 @@ export default function Post(props) {
 
   const handleOnLike = async (event) => {
     event.preventDefault()
-    const response = await fetch(`https://localhost:5000/post/${props.data.id}/like`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/post/${props.data.id}/like`, {
       method: "GET",
       headers: {
         Authorization: `Token ${localStorage.getItem('token')}`    

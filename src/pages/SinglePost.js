@@ -27,7 +27,7 @@ export default function Post() {
   const handleOnSubmit = (event) => {
       event.preventDefault()
       axios({ 
-          url: `https://localhost:5000/post/${PostData.id}/edit`,
+          url: `${process.env.REACT_APP_API_URL}/post/${PostData.id}/edit`,
           method: "POST",
           headers: {
               "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function Post() {
   const handleOnLike = async event => {
     event.preventDefault();
     const response = await fetch(
-      `https://localhost:5000/post/${PostData.id}/like`,
+      `${process.env.REACT_APP_API_URL}/post/${PostData.id}/like`,
       {
         method: "GET",
         headers: {
