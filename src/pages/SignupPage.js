@@ -7,6 +7,8 @@ export default function Signup(props) {
   const [email, setEmail] = useState("hang@gmail.com");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+
   const [password, setPassword] = useState("");
   const history = useHistory();
 
@@ -133,6 +135,20 @@ export default function Signup(props) {
                 setLastName(e.target.value);
               }}
             />
+            {/* <p style={{ fontWeight: "600" }}>Profile Image</p>
+            <input
+              style={{ marginBottom: "20px" }}
+              type="text"
+              name="img_url"
+              id="inputEmail"
+              className="form-control"
+              placeholder="Profile Image"
+              required=""
+              value={profileImage}
+              onChange={e => {
+                setProfileImage(e.target.value);
+              }}
+            /> */}
             <p style={{ fontWeight: "600" }}>Password</p>
             <input
               style={{ marginBottom: "20px" }}

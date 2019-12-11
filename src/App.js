@@ -16,6 +16,8 @@ import HomePage from "./pages/HomePage";
 import Features from "./pages/Features";
 import AboutUs from "./pages/AboutUs";
 import NavBar from "./components/NavBar";
+import PostEdit from "./components/PostEdit";
+
 import Footer from "./components/Footer";
 import { Spinner } from "react-bootstrap";
 

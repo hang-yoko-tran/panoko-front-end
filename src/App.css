@@ -473,4 +473,13 @@
     height: 230px;
   }
 
+
+  .title-btn-single-post{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .edit-delete-like-btn{
+    margin-bottom: 20px;
+  }
 }

@@ -31,7 +31,7 @@ export default function Home() {
             return (
                 <Post data={post} />
             )
-        }) : <p>There no post on this fucking page</p> }
+        }) : <p>There no post on this page</p> }
         
     </div>
     

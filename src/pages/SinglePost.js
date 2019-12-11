@@ -2,15 +2,42 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
-import {axios} from "axios";
-import Comment from "../components/Comment"
+import axios   from "axios";
+import Comment from "../components/Comment";
+import { Modal } from "react-bootstrap"
 
 export default function Post() {
   const [PostData, setPostData] = useState(null);
+  const [ openModal, setOpenModal ] = useState(false)
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [commentInput, setCommentInput] = useState({})
+  const [commentInput, setCommentInput] = useState({});
   const { id } = useParams();
+
+  const handleOnClose = (event) => {
+    event.preventDefault()
+    setOpenModal(false)
+  }
+
+  const handleOnChange = (event) => {
+    event.preventDefault()
+    setPostData({...PostData, [event.target.name]: event.target.value})
+}
+
+  const handleOnSubmit = (event) => {
+      event.preventDefault()
+      axios({ 
+          url: `https://localhost:5000/post/${PostData.id}/edit`,
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${localStorage.getItem("token")}`
+          },
+          data: JSON.stringify(PostData)
+      })
+      setOpenModal(false)
+}
+
 
   const handleOnLike = async event => {
     event.preventDefault();
@@ -32,29 +59,34 @@ export default function Post() {
     }
   };
 
- const handleOnCommentChange = (event) => {
-   event.preventDefault()
-   setCommentInput({...commentInput, [event.target.name]: event.target.value})
- }
+  const handleOnCommentChange = event => {
+    event.preventDefault();
+    setCommentInput({
+      ...commentInput,
+      [event.target.name]: event.target.value
+    });
+  };
 
- const handleOnCommentSubmit = async (event) => {
-    event.preventDefault()
-    const response = await fetch(`https://localhost:5000/post/${PostData.id}/comment`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: `Token ${localStorage.getItem("token")}`
-      },
-      body: JSON.stringify(commentInput)
-    })
-    const data = await response.json()
-    if(data.status === "created"){
-      handleOnLoading()
+  const handleOnCommentSubmit = async event => {
+    event.preventDefault();
+    const response = await fetch(
+      `https://localhost:5000/post/${PostData.id}/comment`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(commentInput)
+      }
+    );
+    const data = await response.json();
+    if (data.status === "created") {
+      handleOnLoading();
     }
-    handleOnLoading()
-
- }
+    handleOnLoading();
+  };
 
   const handleOnLoading = async () => {
     const response = await fetch(`https://localhost:5000/post/${id}`, {
@@ -65,7 +97,7 @@ export default function Post() {
     });
 
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     if (data.isLiked) {
       setLiked(true);
     } else {
@@ -73,7 +105,7 @@ export default function Post() {
     }
     console.log(PostData);
     setPostData(data);
-    setLoading(false)
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -89,11 +121,11 @@ export default function Post() {
   }
 
   return (
-    <div className="container col-md-12">
+    <div className="container col-xl-6 col-md-12">
       {loading ? (
         <Spinner animation="border" variant="primary" />
       ) : (
-        <div className="artwork-home-area ">
+        <div className="artwork-home-area">
           {/* <div className="card mb-4 shadow-sm"> */}
           {/* <svg
             className="bd-placeholder-img card-img-top"
@@ -112,8 +144,12 @@ export default function Post() {
             <div>
               <h5 className="title-single-post">{PostData.title}</h5>
             </div>
-            <div>
+            <div className="edit-delete-like-btn">
               <button
+                onClick={(event) => {
+                  event.preventDefault()
+                  setOpenModal(true)
+                }}
                 type="button"
                 className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
               >
@@ -162,12 +198,10 @@ export default function Post() {
           </div>
 
           <hr></hr>
-          
-
 
           <form
-          onChange={handleOnCommentChange}
-          onSubmit={handleOnCommentSubmit}
+            onChange={handleOnCommentChange}
+            onSubmit={handleOnCommentSubmit}
           >
             <h6 style={{ marginTop: "35px", marginBottom: "20px" }}>
               <strong>Add a new comment</strong>
@@ -187,8 +221,8 @@ export default function Post() {
               Post Comment
             </Button>
           </form>
-          {PostData.comments.map((commentData) => {
-            return <Comment data={commentData} />
+          {PostData.comments.map(commentData => {
+            return <Comment data={commentData} />;
           })}
           {/* <div className="d-flex flex-wrap">
           {comment ? (
@@ -201,6 +235,28 @@ export default function Post() {
         </div> */}
         </div>
       )}
+      <Modal show={openModal}>
+        <Modal.Header onClick={handleOnClose} closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form
+            onSubmit={handleOnSubmit}
+            onChange={handleOnChange}
+            className="d-flex flex-column justify-content-center align-items-center"
+          >
+            <input name="image_url" value={PostData.image_url}></input>
+            <img
+              src={PostData ? PostData.image_url : ""}
+              width="300px"
+              alt=""
+            />
+            <input name="title" value={PostData.title}></input>
+            <input name="body" value={PostData.body}></input>
+            <button type="submit"> Press this button </button>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
