@@ -2,47 +2,44 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
-import axios   from "axios";
-import { Modal } from "react-bootstrap"
-import Comment from "../components/Comment"
+import axios from "axios";
+import { Modal } from "react-bootstrap";
+import Comment from "../components/Comment";
 
 export default function Post(props) {
   const [PostData, setPostData] = useState(null);
   // const [CommentData, setCommentData] = useState(null);
 
-  const [ openModal, setOpenModal ] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [commentInput, setCommentInput] = useState({});
   const { id } = useParams();
-  let history = useHistory()
+  let history = useHistory();
 
-  const handleOnClose = (event) => {
-    event.preventDefault()
-    setOpenModal(false)
-  }
+  const handleOnClose = event => {
+    event.preventDefault();
+    setOpenModal(false);
+  };
 
-  const handleOnChange = (event) => {
-    event.preventDefault()
-    setPostData({...PostData, [event.target.name]: event.target.value})
-}
+  const handleOnChange = event => {
+    event.preventDefault();
+    setPostData({ ...PostData, [event.target.name]: event.target.value });
+  };
 
-  const handleOnSubmit = (event) => {
-      event.preventDefault()
-      axios({ 
-          url: `${process.env.REACT_APP_API_URL}/post/${PostData.id}/edit`,
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: `Token ${localStorage.getItem("token")}`
-          },
-          data: JSON.stringify(PostData)
-      })
-      setOpenModal(false)
-}
-
-
-
+  const handleOnSubmit = event => {
+    event.preventDefault();
+    axios({
+      url: `${process.env.REACT_APP_API_URL}/post/${PostData.id}/edit`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("token")}`
+      },
+      data: JSON.stringify(PostData)
+    });
+    setOpenModal(false);
+  };
 
   const handleOnLike = async event => {
     event.preventDefault();
@@ -113,24 +110,24 @@ export default function Post(props) {
     setLoading(false);
   };
 
-  const deletePost = async (id) => {
+  const deletePost = async id => {
     const res = await fetch(`https://localhost:5000/post/${id}/delete`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${props.token}`
-        },
-        body: JSON.stringify({"id": id })
-    })
-    const data = await res.json()
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${props.token}`
+      },
+      body: JSON.stringify({ id: id })
+    });
+    const data = await res.json();
     if (data.success) {
-        console.log('delete success post id:', id)
-        history.push('/home')
-        setPostData(props.post)
+      console.log("delete success post id:", id);
+      history.push("/home");
+      setPostData(props.post);
     } else {
-        console.log(data.status)
+      console.log(data.status);
     }
-  }
+  };
 
   useEffect(() => {
     handleOnLoading();
@@ -170,9 +167,9 @@ export default function Post(props) {
             </div>
             <div className="edit-delete-like-btn">
               <button
-                onClick={(event) => {
-                  event.preventDefault()
-                  setOpenModal(true)
+                onClick={event => {
+                  event.preventDefault();
+                  setOpenModal(true);
                 }}
                 type="button"
                 className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
@@ -182,7 +179,7 @@ export default function Post(props) {
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
-                onClick={()=>deletePost(id)}
+                onClick={() => deletePost(id)}
               >
                 Delete
               </button>
@@ -262,29 +259,61 @@ export default function Post(props) {
       )}
       <Modal show={openModal}>
         <Modal.Header onClick={handleOnClose} closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title className="d-flex flex-column justify-content-center align-items-center ">
+            <strong>Edit Post</strong>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form
             onSubmit={handleOnSubmit}
             onChange={handleOnChange}
-            className="d-flex flex-column justify-content-center align-items-center"
+            className="d-flex flex-column justify-content-center  "
           >
-            <input name="image_url" value={PostData.image_url}></input>
+            {/* <div> */}
+              <p className="title-input-edit-post">Artwork URL</p>
+
+              <input
+                name="image_url"
+                value={PostData.image_url}
+                className="form-control form-control"
+              ></input>
+            {/* </div> */}
+
             <img
               src={PostData ? PostData.image_url : ""}
-              width="300px"
+              className="img-edit"
               alt=""
             />
-            <input name="title" value={PostData.title}></input>
-            <input name="body" value={PostData.body}></input>
-            <button type="submit"> Press this button </button>
+
+            {/* <div> */}
+              <p className="title-input-edit-post">Title</p>
+
+              <input
+                name="title"
+                value={PostData.title}
+                className="input-edit-post form-control"
+              ></input>
+            {/* </div> */}
+
+            {/* <div> */}
+              <p className="title-input-edit-post">Description</p>
+              <input
+                name="body"
+                value={PostData.body}
+                className="input-edit-post form-control"
+              ></input>
+            {/* </div> */}
+
+            <button
+              type="submit"
+              className="btn btn-lg btn-primary btn-block signin-btn-v2"
+            >
+              {" "}
+              Press this button{" "}
+            </button>
           </form>
         </Modal.Body>
       </Modal>
-
-
-
     </div>
   );
 }
