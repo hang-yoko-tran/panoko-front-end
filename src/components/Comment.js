@@ -14,7 +14,7 @@ export default function Comment(props) {
 
   const editComment = async id => {
     console.log("BODY", body);
-    const res = await fetch(`https://localhost:5000/post/comment/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/post/comment/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export default function Comment(props) {
   const deleteComment = async id => {
     console.log("BODY", body);
     const res = await fetch(
-      `https://localhost:5000/post/comment/${id}/delete`,
+      `${process.env.REACT_APP_API_URL}/post/comment/${id}/delete`,
       {
         method: "DELETE",
         headers: {

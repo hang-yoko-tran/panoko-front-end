@@ -75,7 +75,7 @@ export default function Post(props) {
   const handleOnCommentSubmit = async event => {
     event.preventDefault();
     const response = await fetch(
-      `https://localhost:5000/post/${PostData.id}/comment`,
+      `${process.env.REACT_APP_API_URL}/post/${PostData.id}/comment`,
       {
         method: "POST",
         headers: {
@@ -94,7 +94,7 @@ export default function Post(props) {
   };
 
   const handleOnLoading = async () => {
-    const response = await fetch(`https://localhost:5000/post/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/post/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`
@@ -115,7 +115,7 @@ export default function Post(props) {
   };
 
   const deletePost = async id => {
-    const res = await fetch(`https://localhost:5000/post/${id}/delete`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/post/${id}/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
