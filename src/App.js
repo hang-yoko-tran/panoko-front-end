@@ -15,6 +15,7 @@ import SinglePost from "./pages/SinglePost";
 import HomePage from "./pages/HomePage";
 import Features from "./pages/Features";
 import AboutUs from "./pages/AboutUs";
+import Profile from "./pages/Profile";
 import NavBar from "./components/NavBar";
 import PostEdit from "./components/PostEdit";
 
@@ -37,7 +38,6 @@ function App() {
   const getUser = async () => {
     const token = localStorage.getItem("token") || getParam("api_key");
     if (token) {
-      // const url = "https://127.0.0.1:5000/user/get_user";
       const url = `${process.env.REACT_APP_API_URL}/user/get_user`;
       const response = await fetch(url, {
         headers: {
@@ -51,7 +51,7 @@ function App() {
         setUser(data.user);
       } else {
         console.log("not login, invalid key");
-        setUser(null)
+        setUser(null);
         localStorage.removeItem("token");
       }
     }
@@ -88,42 +88,29 @@ function App() {
               )}
             </Route>
             <Route path="/signin" exact>
-              {!user ? (
-                <SigninPage setUser={setUser} />
-              ) : (
-                <HomePage />
-              )}
+              {!user ? <SigninPage setUser={setUser} /> : <HomePage />}
             </Route>
             <Route path="/forgot-password" exact>
-              {!user ? (
-                <ForgotPassword />
-              ) : (
-                <HomePage user={user} />
-              )}
+              {!user ? <ForgotPassword /> : <HomePage user={user} />}
             </Route>
             <Route path="/new-password/:token" exact>
               <ForgotPassword />
-              {!user ? (
-                <NewPassword />
-              ) : (
-                <HomePage user={user} />
-              )}
+              {!user ? <NewPassword /> : <HomePage user={user} />}
             </Route>
+            <ProtectedRoute path="/profile" exact>
+              <Profile user={user} />
+            </ProtectedRoute>
             <ProtectedRoute path="/home" exact>
               <HomePage user={user} />
             </ProtectedRoute>
 
-          <Route path="/upload-post" exact>
-            <UploadPost user={user} />
-          </Route>
-          <Route path="/post/:id" exact>
-            <SinglePost 
-              user={user} 
-            />
-          </Route>
-
+            <Route path="/upload-post" exact>
+              <UploadPost user={user} />
+            </Route>
+            <Route path="/post/:id" exact>
+              <SinglePost user={user} />
+            </Route>
           </Switch>
-
         </div>
       )}
       <Footer />

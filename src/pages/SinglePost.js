@@ -12,6 +12,7 @@ export default function Post(props) {
 
   const [openModal, setOpenModal] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [commentInput, setCommentInput] = useState({});
   const { id } = useParams();
@@ -56,8 +57,10 @@ export default function Post(props) {
     console.log(data.status);
     if (data.status === "OK") {
       setLiked(true);
+      setLikeCount(likeCount + 1);
     } else {
       setLiked(false);
+      setLikeCount(likeCount - 1);
     }
   };
 
@@ -100,6 +103,7 @@ export default function Post(props) {
 
     const data = await response.json();
     console.log(data);
+    setLikeCount(data.likeCount);
     if (data.isLiked) {
       setLiked(true);
     } else {
@@ -166,29 +170,35 @@ export default function Post(props) {
               <h5 className="title-single-post">{PostData.title}</h5>
             </div>
             <div className="edit-delete-like-btn">
-              <button
-                onClick={event => {
-                  event.preventDefault();
-                  setOpenModal(true);
-                }}
-                type="button"
-                className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
-                onClick={() => deletePost(id)}
-              >
-                Delete
-              </button>
+              {props.user.id == PostData.author.id && (
+                <span>
+                  <button
+                    onClick={event => {
+                      event.preventDefault();
+                      setOpenModal(true);
+                    }}
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary edit-btn-single-post edit-btn"
+                    onClick={() => deletePost(id)}
+                  >
+                    Delete
+                  </button>
+                </span>
+              )}
+
               <button
                 type="button"
                 onClick={handleOnLike}
                 className="btn btn-sm btn-outline-secondary edit-btn"
               >
-                <i className="fas fa-heart"></i> {liked ? "Like" : "Unlike"}
+                <i>{likeCount > 0 && likeCount}</i>{" "}
+                <i className="fas fa-heart"></i> {liked ? "Unlike" : "Like"}
               </button>
             </div>
           </div>
@@ -244,7 +254,14 @@ export default function Post(props) {
             </Button>
           </form>
           {PostData.comments.map(commentData => {
-            return <Comment data={commentData} />;
+            return (
+              <Comment
+                data={commentData}
+                key={commentData.id}
+                handleOnLoading={handleOnLoading}
+                user={props.user}
+              />
+            );
           })}
           {/* <div className="d-flex flex-wrap">
           {comment ? (
@@ -270,13 +287,13 @@ export default function Post(props) {
             className="d-flex flex-column justify-content-center  "
           >
             {/* <div> */}
-              <p className="title-input-edit-post">Artwork URL</p>
+            <p className="title-input-edit-post">Artwork URL</p>
 
-              <input
-                name="image_url"
-                value={PostData.image_url}
-                className="form-control form-control"
-              ></input>
+            <input
+              name="image_url"
+              value={PostData.image_url}
+              className="form-control form-control"
+            ></input>
             {/* </div> */}
 
             <img
@@ -286,22 +303,22 @@ export default function Post(props) {
             />
 
             {/* <div> */}
-              <p className="title-input-edit-post">Title</p>
+            <p className="title-input-edit-post">Title</p>
 
-              <input
-                name="title"
-                value={PostData.title}
-                className="input-edit-post form-control"
-              ></input>
+            <input
+              name="title"
+              value={PostData.title}
+              className="input-edit-post form-control"
+            ></input>
             {/* </div> */}
 
             {/* <div> */}
-              <p className="title-input-edit-post">Description</p>
-              <input
-                name="body"
-                value={PostData.body}
-                className="input-edit-post form-control"
-              ></input>
+            <p className="title-input-edit-post">Description</p>
+            <input
+              name="body"
+              value={PostData.body}
+              className="input-edit-post form-control"
+            ></input>
             {/* </div> */}
 
             <button

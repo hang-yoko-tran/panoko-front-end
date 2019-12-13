@@ -17,10 +17,13 @@ export default function NavBar(props) {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log("DATA", data);
+
         if (data.code === 200) {
           props.setUser(null);
           localStorage.removeItem("token");
-          history.push("/signin");
+          // history.push("/signin");
+          window.location.href = "/signin";
         }
       }
     }
@@ -60,17 +63,24 @@ export default function NavBar(props) {
               </span>
             ) : (
               <>
-              <Button variant="primary" className="upload-btn">
-                <Link className="signin-btn-v2" to="/upload-post">Upload your artwork</Link>
-              </Button>    
-              {/* <p>{ current_user.firstname }</p> */}
-              <Button
-                className="signin-btn"
-                variant="outline-info"
-                onClick={logout}
-              >
-                Logout
-              </Button>
+                <Link to="/profile">
+                  <Button className="signin-btn" variant="outline-info">
+                    Profile
+                  </Button>
+                </Link>
+                <Button variant="primary" className="upload-btn">
+                  <Link className="signin-btn-v2" to="/upload-post">
+                    Upload your artwork
+                  </Link>
+                </Button>
+                {/* <p>{ current_user.firstname }</p> */}
+                <Button
+                  className="signin-btn"
+                  variant="outline-info"
+                  onClick={logout}
+                >
+                  Logout
+                </Button>
               </>
             )}
           </div>
