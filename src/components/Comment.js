@@ -29,7 +29,6 @@ export default function Comment(props) {
   };
 
   const deleteComment = async id => {
-    console.log("BODY", body);
     const res = await fetch(
       `${process.env.REACT_APP_API_URL}/post/comment/${id}/delete`,
       {
