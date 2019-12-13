@@ -10,7 +10,6 @@ export default function Signin(props) {
 
   const signIn = async e => {
     e.preventDefault();
-    // const url = "https://127.0.0.1:5000/user/login";
     const url = `${process.env.REACT_APP_API_URL}/user/login`;
     const response = await fetch(url, {
       method: "POST",
@@ -162,7 +161,7 @@ export default function Signin(props) {
             <a
               // type="button"
               className="btn btn-lg btn-primary btn-block signin-fb-btn"
-              href="https://127.0.0.1:5000/login/facebook"
+              href={`${process.env.REACT_APP_API_URL}/login/facebook`}
             >
               Sign In With Facebook
             </a>
