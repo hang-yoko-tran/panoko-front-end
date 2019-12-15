@@ -1,12 +1,31 @@
 import React, { useState } from "react";
-import { Image, Button } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
 import notify from "../utils/Notification";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import Button from "react-validation/build/button";
+import { required, emailValidate } from "../utils/Validation";
 
 export default function Signin(props) {
-  const [email, setEmail] = useState("hang@gmail.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+
+  // const required = value => {
+  //   if (!value.toString().trim().length) {
+  //     // We can return string or jsx as the 'error' prop for the validated Component
+  //     return <span className="text-danger"> require</span>;
+  //   }
+  // };
+
+  // const emailValidate = value => {
+  //   if (!validator.isEmail(value)) {
+  //     return (
+  //       <span className="text-danger">{`${value} is not a valid email.`}</span>
+  //     );
+  //   }
+  // };
 
   const signIn = async e => {
     e.preventDefault();
@@ -99,7 +118,7 @@ export default function Signin(props) {
               </Link>
             </a>
           </div>
-          <form className="form-signin">
+          <Form className="form-signin" onSubmit={signIn}>
             <h3
               style={{
                 fontWeight: "600",
@@ -111,26 +130,25 @@ export default function Signin(props) {
               Sign In To Panoko
             </h3>
             <p style={{ fontWeight: "600" }}>Email</p>
-            <input
-              style={{ marginBottom: "20px" }}
-              type="email"
-              id="inputEmail"
+
+            <Input
               className="form-control"
-              placeholder="Email address"
-              required=""
+              placeholder="Email"
+              name="email"
+              validations={[required, emailValidate]}
               value={email}
               onChange={e => {
                 setEmail(e.target.value);
               }}
             />
             <p style={{ fontWeight: "600" }}>Password</p>
-            <input
+            <Input
               style={{ marginBottom: "20px" }}
               type="password"
               id="inputPassword"
               className="form-control"
               placeholder="Password"
-              required=""
+              validations={[required]}
               value={password}
               onChange={e => {
                 setPassword(e.target.value);
@@ -148,25 +166,21 @@ export default function Signin(props) {
                 ForgotPassword
               </Link>
             </div>
-
-            <button
+            <Button
               className="btn btn-lg btn-primary btn-block signin-btn-v2"
-              type="button"
-              onClick={signIn}
+              type="submit"
             >
               Sign In
-            </button>
+            </Button>
             <hr style={{ marginTop: "20px" }}></hr>
-
             <a
-              // type="button"
               className="btn btn-lg btn-primary btn-block signin-fb-btn"
               href={`${process.env.REACT_APP_API_URL}/login/facebook`}
             >
               Sign In With Facebook
             </a>
             <p className="mt-5 mb-3 text-muted">© 2017-2019</p>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

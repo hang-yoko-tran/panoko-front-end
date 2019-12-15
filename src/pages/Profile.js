@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Post from "../components/Post";
+import { Card, ListGroup } from "react-bootstrap";
 
 export default function Profile(props) {
   const { user } = props;
@@ -30,6 +31,15 @@ export default function Profile(props) {
 
   return (
     <div className="d-flex flex-wrap">
+      <Card style={{ width: "18rem" }}>
+        <Card.Header>User profile</Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item>{user.firstname}</ListGroup.Item>
+          <ListGroup.Item>{user.lastname}</ListGroup.Item>
+          <ListGroup.Item>{user.email}</ListGroup.Item>
+        </ListGroup>
+      </Card>
+
       {posts && posts.length > 0 ? (
         posts.map(post => {
           return <Post data={post} key={post.id} />;

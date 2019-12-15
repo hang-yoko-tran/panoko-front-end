@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
 import notify from "../utils/Notification";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import Button from "react-validation/build/button";
+import { required, emailValidate, minLength } from "../utils/Validation";
 
 export default function Signup(props) {
-  const [email, setEmail] = useState("hang@gmail.com");
+  const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profileImage, setProfileImage] = useState("");
@@ -14,7 +18,6 @@ export default function Signup(props) {
 
   const singUp = async e => {
     e.preventDefault();
-    // const url = "https://127.0.0.1:5000/user/register";
     const url = `${process.env.REACT_APP_API_URL}/user/register`;
     const response = await fetch(url, {
       method: "POST",
@@ -32,7 +35,7 @@ export default function Signup(props) {
       const data = await response.json();
       if (data.code === 200) {
         history.push("/signin");
-        notify("Info", "User Created", "success")
+        notify("Info", "User Created", "success");
         console.log("user created");
       } else if (data.code === 409) {
         notify("Error", "Email already exist!", "danger");
@@ -65,7 +68,7 @@ export default function Signup(props) {
         </section>
 
         <section className="container right-signup-area">
-          {/* <form className="form-signin col-6 container" method="POST"> */}
+          {/* <Form className="form-signin col-6 container" method="POST"> */}
           <div
             style={{
               display: "flex",
@@ -86,57 +89,57 @@ export default function Signup(props) {
             </a>
           </div>
           <div>
-          <form className="form-signin ">
-            <h3
-              style={{
-                fontWeight: "600",
-                color: "#333333",
-                marginTop: "30px",
-                marginBottom: "20px"
-              }}
-            >
-              Sign Up To Panoko
-            </h3>
-            <p style={{ fontWeight: "600" }}>Email</p>
-            <input
-              style={{ marginBottom: "20px" }}
-              type="email"
-              id="inputEmail"
-              className="form-control"
-              placeholder="Email address"
-              required=""
-              value={email}
-              onChange={e => {
-                setEmail(e.target.value);
-              }}
-            />
-            <p style={{ fontWeight: "600" }}>Frist Name</p>
-            <input
-              style={{ marginBottom: "20px" }}
-              type="text"
-              id="inputEmail"
-              className="form-control"
-              placeholder="Frist Name"
-              required=""
-              value={firstName}
-              onChange={e => {
-                setFirstName(e.target.value);
-              }}
-            />
-            <p style={{ fontWeight: "600" }}>Last Name</p>
-            <input
-              style={{ marginBottom: "20px" }}
-              type="text"
-              id="inputEmail"
-              className="form-control"
-              placeholder="Last Name"
-              required=""
-              value={lastName}
-              onChange={e => {
-                setLastName(e.target.value);
-              }}
-            />
-            {/* <p style={{ fontWeight: "600" }}>Profile Image</p>
+            <Form className="form-signin ">
+              <h3
+                style={{
+                  fontWeight: "600",
+                  color: "#333333",
+                  marginTop: "30px",
+                  marginBottom: "20px"
+                }}
+              >
+                Sign Up To Panoko
+              </h3>
+              <p style={{ fontWeight: "600" }}>Email</p>
+              <Input
+                style={{ marginBottom: "20px" }}
+                type="email"
+                id="inputEmail"
+                className="form-control"
+                placeholder="Email address"
+                validations={[required, emailValidate]}
+                value={email}
+                onChange={e => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <p style={{ fontWeight: "600" }}>Frist Name</p>
+              <Input
+                style={{ marginBottom: "20px" }}
+                type="text"
+                id="inputEmail"
+                className="form-control"
+                placeholder="Frist Name"
+                validations={[required]}
+                value={firstName}
+                onChange={e => {
+                  setFirstName(e.target.value);
+                }}
+              />
+              <p style={{ fontWeight: "600" }}>Last Name</p>
+              <Input
+                style={{ marginBottom: "20px" }}
+                type="text"
+                id="inputEmail"
+                className="form-control"
+                placeholder="Last Name"
+                validations={[required]}
+                value={lastName}
+                onChange={e => {
+                  setLastName(e.target.value);
+                }}
+              />
+              {/* <p style={{ fontWeight: "600" }}>Profile Image</p>
             <input
               style={{ marginBottom: "20px" }}
               type="text"
@@ -150,38 +153,38 @@ export default function Signup(props) {
                 setProfileImage(e.target.value);
               }}
             /> */}
-            <p style={{ fontWeight: "600" }}>Password</p>
-            <input
-              style={{ marginBottom: "20px" }}
-              type="password"
-              id="inputPassword"
-              className="form-control"
-              placeholder="Password"
-              required=""
-              value={password}
-              onChange={e => {
-                setPassword(e.target.value);
-              }}
-            />
-            <div className="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me" />
-                Remember me
-              </label>
-            </div>
-            <button
-              className="btn btn-lg btn-primary btn-block signin-btn-v2"
-              type="submit"
-              onClick={singUp}
-            >
-              Sign Up
-            </button>
-            {/* <p className="mt-5 mb-3 text-muted">© 2017-2019</p> */}
-            {/* </form> */}
-          </form>
+              <p style={{ fontWeight: "600" }}>Password</p>
+              <Input
+                style={{ marginBottom: "20px" }}
+                type="password"
+                id="inputPassword"
+                className="form-control"
+                placeholder="Password"
+                minLength="6"
+                validations={[required, minLength]}
+                value={password}
+                onChange={e => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <div className="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="remember-me" />
+                  Remember me
+                </label>
+              </div>
+              <Button
+                className="btn btn-lg btn-primary btn-block signin-btn-v2"
+                type="submit"
+                onClick={singUp}
+              >
+                Sign Up
+              </Button>
+              {/* <p className="mt-5 mb-3 text-muted">© 2017-2019</p> */}
+              {/* </Form> */}
+            </Form>
           </div>
         </section>
-        
       </div>
     </div>
   );
