@@ -137,9 +137,9 @@
   color: white !important;
 }
 
-.page-footer{
+/* .page-footer{
   margin-top: 50px;
-}
+} */
 
 
 .left-signup-area{
@@ -151,7 +151,7 @@
 .signup-area{
   margin-top: -40px;
   display: flex;
-
+  background-color: green;
 }
 
 .left-signin-area{

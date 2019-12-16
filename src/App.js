@@ -94,7 +94,6 @@ function App() {
               {!user ? <ForgotPassword /> : <HomePage user={user} />}
             </Route>
             <Route path="/new-password/:token" exact>
-              <ForgotPassword />
               {!user ? <NewPassword /> : <HomePage user={user} />}
             </Route>
             <ProtectedRoute path="/profile" exact>
