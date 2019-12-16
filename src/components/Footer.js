@@ -59,9 +59,9 @@ export default function Footer() {
 
                 <Image style={{marginBottom: '8px', marginTop: '-6px'}}className="logo" src="https://s1.upanh.pro/2019/12/02/Panoko_logo_png.png" /><br></br>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}}></hr>
-                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipisicing elit.</p>
+                <p>
+                What are you working on? Panoko is a community of designers sharing screenshots of their work, process, and projects.
+                </p>
         
               </div>
 
@@ -71,16 +71,16 @@ export default function Footer() {
                 <h6 className="text-uppercase font-weight-bold">Products</h6>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}}></hr>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>MDBootstrap</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Vestibulum Vel</a>
                 </p>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>MDWordPress</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Consectetur</a>
                 </p>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>BrandFlow</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Quis Sodales</a>
                 </p>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>Bootstrap Angular</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Dignissim</a>
                 </p>
         
               </div>
@@ -93,16 +93,16 @@ export default function Footer() {
                 <h6 className="text-uppercase font-weight-bold">Useful links</h6>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}}></hr>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>Your Account</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Sed Commodo</a>
                 </p>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>Become an Affiliate</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Vestibulum Feugiat</a>
                 </p>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>Shipping Rates</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Suspendisse Ac</a>
                 </p>
                 <p>
-                  <a href="#!" style={{color: '#EA4C89'}}>Help</a>
+                  <a href="#!" style={{color: '#EA4C89'}}>Condimentum </a>
                 </p>
         
               </div>
