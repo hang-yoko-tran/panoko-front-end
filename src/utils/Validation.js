@@ -18,7 +18,7 @@ export const emailValidate = value => {
 
 export const minLength = (value, props) => {
   // get the maxLength from component's props
-  if (!value.toString().trim().length < props.minLength) {
+  if (!value.toString().trim().length <= props.minLength) {
     // Return jsx
     return <span className="text-danger">Please lengthen this text to {props.minLength} or more.</span>
   }

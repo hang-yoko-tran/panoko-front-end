@@ -89,7 +89,7 @@ export default function Signup(props) {
             </a>
           </div>
           <div>
-            <Form className="form-signin ">
+            <Form className="form-signin" onSubmit={singUp}>
               <h3
                 style={{
                   fontWeight: "600",
@@ -161,7 +161,7 @@ export default function Signup(props) {
                 className="form-control"
                 placeholder="Password"
                 minLength="6"
-                validations={[required, minLength]}
+                validations={[required]}
                 value={password}
                 onChange={e => {
                   setPassword(e.target.value);
@@ -176,7 +176,7 @@ export default function Signup(props) {
               <Button
                 className="btn btn-lg btn-primary btn-block signin-btn-v2"
                 type="submit"
-                onClick={singUp}
+                // onClick={singUp}
               >
                 Sign Up
               </Button>
