@@ -58,9 +58,12 @@ export default function Post(props) {
         {/* </svg> */}
         <div className="  card-body">
           <p className="card-text">
-            {props.data.title} - {props.data.author.firstname}
+            <strong>{props.data.title}</strong>
           </p>
-          <p className="card-text">{props.data.body}</p>
+          <p className="card-text">
+          <i className="fas fa-user-circle" style={{color: "#E9E8E8"}}></i>  <strong>{props.data.author.firstname}</strong>
+          </p>
+          {/* <p className="card-text">{props.data.body}</p> */}
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
               <button

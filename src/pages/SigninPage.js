@@ -141,7 +141,7 @@ export default function Signin(props) {
                 setEmail(e.target.value);
               }}
             />
-            <p style={{ fontWeight: "600" }}>Password</p>
+            <p style={{ fontWeight: "600", marginTop: "20px"}}>Password</p>
             <Input
               style={{ marginBottom: "20px" }}
               type="password"
