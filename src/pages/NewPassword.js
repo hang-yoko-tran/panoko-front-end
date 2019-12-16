@@ -41,7 +41,7 @@ export default function NewPassword(props) {
   };
   return (
     <div>
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "flex-end",
@@ -52,7 +52,7 @@ export default function NewPassword(props) {
         <a href="#" style={{ color: "#EA4C89" }}>
           Sign Up Now
         </a>
-      </div>
+      </div> */}
       <div className="signup-area">
         <section className="left-signin-area">
           <h3
@@ -85,7 +85,7 @@ export default function NewPassword(props) {
                 marginBottom: "20px"
               }}
             >
-              Sign In To Panoko
+              New Password
             </h3>
             <p style={{ fontWeight: "600" }}>Password</p>
             <input
