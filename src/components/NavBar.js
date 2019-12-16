@@ -84,7 +84,7 @@ export default function NavBar(props) {
               </>
             )}
           </div>
-          <div className="search-input-search-btn-area">
+          {/* <div className="search-input-search-btn-area">
             <Form inline>
               <div className="search-area">
                 <div>
@@ -101,7 +101,7 @@ export default function NavBar(props) {
                 </div>
               </div>
             </Form>
-          </div>
+          </div> */}
         </div>
       </Navbar>
     </div>

@@ -203,9 +203,11 @@ export default function Post(props) {
             </div>
           </div>
           <div className="author-date-single-post">
-            <h5>By {PostData.author.firstname}</h5>
+            <h6>  <i className="fas fa-user-circle" style={{color: "#E9E8E8", fontSize: "24px"}}></i><strong> By {PostData.author.firstname}</strong></h6>
 
-            <small className="text-muted">{PostData.created_at}</small>
+            
+
+            <small className="text-muted"><i className="fas fa-calendar-minus" style={{color: "#E9E8E8", fontSize: "20px"}}></i>     {PostData.created_at}</small>
           </div>
           <img
             // className="bd-placeholder-img card-img-top"

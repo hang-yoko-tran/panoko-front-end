@@ -82,7 +82,7 @@ export default function Post(props) {
                 <i className="fas fa-heart"></i> {liked ? "Unlike" : "Like"}
               </button>
             </div>
-            <small className="text-muted">{props.data.created_at}</small>
+            <small className="text-muted"><i className="fas fa-calendar-minus" style={{color: "#E9E8E8"}}></i> {props.data.created_at}</small>
           </div>
         </div>
       </div>

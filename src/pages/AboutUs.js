@@ -43,7 +43,7 @@ export default function About(props) {
           />
         </div>
       </section>
-      <section className="second-part-about-us container welcome-contain">
+      <section className="second-part-about-us container welcome-contain-second">
           <Image
             className="welcome-img"
             src="https://s8.upanh.pro/2019/12/10/us.png"
