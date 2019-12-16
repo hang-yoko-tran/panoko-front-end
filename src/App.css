@@ -387,7 +387,7 @@
     /* display: flex; */
     align-items: flex-start;
     flex-direction: column;
-    margin-left: -300px;
+    /* margin-left: -300px; */
   }
 /* 
   .input-sign{
